@@ -38,19 +38,10 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
         
-        /* Highlight Marker Effect - 這就是螢光筆效果的 CSS */
+        /* Highlight Marker Effect */
         .highlight-marker {
-            /* 關鍵在這一行：使用線性漸層製作背景 */
-            /* to top: 漸層方向從下往上 */
-            /* rgba(253, 224, 71, 0.6): 螢光黃色，帶有 0.6 的透明度 */
-            /* 40%: 黃色佔據下方 40% 的高度 */
-            /* transparent 40%: 上方 60% 是透明的，讓文字保持清晰 */
             background: linear-gradient(to top, rgba(253, 224, 71, 0.6) 40%, transparent 40%);
-            
-            /* 增加左右內距，讓底色稍微超出文字兩側，視覺更平衡 */
             padding: 0 4px;
-            
-            /* 圓角，讓底線邊緣不那麼銳利 */
             border-radius: 2px;
         }
     </style>
@@ -61,35 +52,42 @@
     <header class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
-                <h1 class="text-2xl font-bold text-gray-800">張玉婷 <span class="text-indigo-600">Eunice Yuting Chang</span></h1>
-                <p class="text-sm text-gray-500 font-medium mt-1">Senior Project Manager, Solution Consultant | Driving Growth with SaaS, Data & AI Strategies</p>
+                <h1 class="text-2xl font-bold text-gray-800" data-key="name">張玉婷 <span class="text-indigo-600">Eunice Yuting Chang</span></h1>
+                <p class="text-sm text-gray-500 font-medium mt-1" data-key="role">Senior Project Manager, Solution Consultant | Driving Growth with SaaS, Data & AI Strategies</p>
             </div>
-            <!-- Contact Button -->
-            <a href="mailto:changyutyng@gmail.com" class="hidden md:inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition shadow-sm">
-                <i class="fas fa-paper-plane mr-2"></i> Contact Me
-            </a>
+            
+            <div class="flex items-center gap-4">
+                <!-- Language Toggle -->
+                <button onclick="toggleLanguage()" class="flex items-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                    <i class="fas fa-globe mr-2"></i>
+                    <span id="lang-label">English</span>
+                </button>
+                
+                <!-- Contact Button -->
+                <a href="mailto:changyutyng@gmail.com" class="hidden md:inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition shadow-sm">
+                    <i class="fas fa-paper-plane mr-2"></i> <span data-key="contactBtn">寄信給我</span>
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero-bg border-b border-gray-100 relative overflow-hidden">
-        <!-- Decorative Elements -->
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 z-0"></div>
         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-60 z-0"></div>
 
         <div class="max-w-5xl mx-auto px-6 py-20 relative z-10 text-center">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-widest mb-6 border border-indigo-100">
-                PROFESSIONAL SUMMARY
+            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold tracking-widest mb-6 border border-indigo-200" data-key="heroBadge">
+                專業摘要
             </span>
             
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight tracking-tight">
-                將複雜數據轉化為<br>
-                <span class="gradient-text block mt-2 md:mt-4">可變現的商業決策</span>
+                <span data-key="heroTitle1">將複雜數據轉化為</span><br>
+                <span class="gradient-text block mt-4 md:mt-6" data-key="heroTitle2">可變現的商業決策</span>
             </h2>
             
-            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-                擁有 10 年以上跨國電商與數位轉型經驗。擅長擔任 <strong class="font-bold text-gray-900 highlight-marker">商業需求 與 技術開發</strong> 之間的橋樑，
-                透過數據洞察解決營運痛點，並將分析服務轉化為具體的產品價值。
+            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto font-light leading-relaxed" data-key="heroDesc">
+                擁有 10 年以上跨國電商與數位轉型經驗。擅長擔任 <strong class="font-bold text-gray-900 highlight-marker">商業需求 與 產品開發</strong> 之間的橋樑，透過數據洞察解決營運痛點，並將分析服務轉化為具體的產品價值。
             </p>
 
             <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
@@ -98,8 +96,8 @@
                     <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mb-4 text-indigo-600">
                         <i class="fas fa-chart-line text-xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">數據驅動營收</h3>
-                    <p class="text-sm text-gray-600">運用 GA、Looker Studio 與 Python 爬蟲，挖掘市場潛力，曾推動單一產品營收成長 173%。</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-key="hl1Title">數據分析驅動分析</h3>
+                    <p class="text-sm text-gray-600" data-key="hl1Desc">運用 GA、Looker Studio 與 Python 爬蟲，挖掘市場潛力，曾推動單一產品營收成長 173%。</p>
                 </div>
 
                 <!-- Highlight 2 -->
@@ -107,8 +105,8 @@
                     <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center mb-4 text-purple-600">
                         <i class="fas fa-hand-holding-usd text-xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">服務產品化</h3>
-                    <p class="text-sm text-gray-600">將一次性專案轉化為標準化模組（如 Excel Pivot 工具），降低客戶學習門檻 50%，提升服務價值。</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-key="hl2Title">顧問式溝通提案</h3>
+                    <p class="text-sm text-gray-600" data-key="hl2Desc">將一次性專案轉化為標準化模組（如 Excel Pivot 工具），降低客戶學習門檻 50%，提升服務價值。</p>
                 </div>
 
                 <!-- Highlight 3 -->
@@ -116,14 +114,14 @@
                     <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mb-4 text-blue-600">
                         <i class="fas fa-comments text-xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">顧問式溝通</h3>
-                    <p class="text-sm text-gray-600">擔任技術與商業端的單一窗口，有效化解跨部門認知落差，縮短 35% 專案落地時間。</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-key="hl3Title">服務模組產品化</h3>
+                    <p class="text-sm text-gray-600" data-key="hl3Desc">擔任技術與商業端的單一窗口，有效化解跨部門認知落差，縮短 35% 專案落地時間。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Key Metrics Highlight Bar (With Counter Animation) -->
+    <!-- Key Metrics Highlight Bar -->
     <section class="bg-slate-900 text-white py-16 shadow-xl mb-16 relative">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-slate-700/50" id="counter-section">
@@ -131,25 +129,25 @@
                     <div class="text-5xl big-stat text-indigo-400 mb-2 group-hover:scale-105 transition-transform">
                         <span class="counter" data-target="40">0</span>+
                     </div>
-                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">協助品牌數位轉型</div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest" data-key="metric1">協助品牌數位轉型</div>
                 </div>
                 <div class="px-4 group">
                     <div class="text-5xl big-stat text-emerald-400 mb-2 group-hover:scale-105 transition-transform">
                         <span class="counter" data-target="20">0</span>%+
                     </div>
-                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">推動每年營收增長</div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest" data-key="metric2">推動每年營收增長</div>
                 </div>
                 <div class="px-4 group">
                     <div class="text-5xl big-stat text-sky-400 mb-2 group-hover:scale-105 transition-transform">
                         <span class="counter" data-target="50">0</span>%
                     </div>
-                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">流程效率提升</div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest" data-key="metric3">流程效率提升</div>
                 </div>
                 <div class="px-4 group">
                     <div class="text-5xl big-stat text-amber-400 mb-2 group-hover:scale-105 transition-transform">
                         <span class="counter" data-target="420">0</span>%
                     </div>
-                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">品牌認知成長</div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest" data-key="metric4">品牌認知成長</div>
                 </div>
             </div>
         </div>
@@ -159,43 +157,44 @@
     <section class="max-w-6xl mx-auto px-6 py-8">
         <h3 class="text-3xl font-extrabold text-gray-900 mb-12 flex items-center">
             <span class="bg-indigo-600 w-1.5 h-8 mr-4 rounded-full"></span>
-            精選成功案例 Selected Case Studies
+            <span data-key="caseTitle">精選成功案例</span>
         </h3>
 
         <!-- Case 1: Digital Transformation -->
         <div class="bg-white rounded-2xl card-shadow mb-20 overflow-hidden border border-gray-100">
             <div class="grid md:grid-cols-12 min-h-[480px]">
                 
-                <!-- Left: Dashboard Visual (Interactive Charts) -->
+                <!-- Left: Dashboard Visual -->
                 <div class="md:col-span-5 bg-indigo-50 p-8 flex flex-col justify-between relative overflow-hidden">
                     <div class="relative z-10 flex flex-col h-full justify-between">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 bg-white border border-indigo-100 text-indigo-600 text-xs font-bold rounded-full shadow-sm">Data Insight</span>
+                            <span class="px-3 py-1 bg-white border border-indigo-100 text-indigo-600 text-xs font-bold rounded-full shadow-sm" data-key="c1Tag">數據洞察</span>
                             <i class="fas fa-ellipsis-h text-indigo-300"></i>
                         </div>
 
-                        <!-- Chart 1: Sales Growth Bar Chart -->
+                        <!-- Chart 1 -->
                         <div class="dashboard-card p-4 rounded-xl mb-4">
                             <div class="flex justify-between items-end mb-2">
                                 <div>
-                                    <span class="text-xs text-gray-500 font-bold uppercase">產品銷售額</span>
+                                    <span class="text-xs text-gray-500 font-bold uppercase" data-key="c1Chart1Label">產品銷售額</span>
                                     <span class="text-2xl font-bold text-indigo-600 block">+74%</span>
                                 </div>
                             </div>
-                            <div class="h-32">
+                            <!-- Bar Chart Visual -->
+                            <div class="h-40 w-full">
                                 <canvas id="chartSalesGrowth"></canvas>
                             </div>
                         </div>
 
-                        <!-- Chart 2: Revenue Trend Line Chart -->
+                        <!-- Chart 2 -->
                         <div class="dashboard-card p-4 rounded-xl mb-4">
                             <div class="flex justify-between items-end mb-2">
                                 <div>
-                                    <span class="text-xs text-gray-500 font-bold uppercase">最佳單月營業額成長</span>
-                                    <span class="text-xl font-bold text-gray-800 block">+25% <span class="text-xs text-green-500 font-medium">MoM</span></span>
+                                    <span class="text-xs text-gray-500 font-bold uppercase" data-key="c1Chart2Label">廣告效率提升</span>
+                                    <span class="text-xl font-bold text-indigo-600 block">+30%</span>
                                 </div>
                             </div>
-                            <div class="h-24">
+                            <div class="h-24 w-full">
                                 <canvas id="chartRevenueTrend"></canvas>
                             </div>
                         </div>
@@ -203,12 +202,20 @@
                         <!-- Bottom Matrix -->
                         <div class="grid grid-cols-2 gap-3 mt-auto">
                             <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
-                                <div class="text-[10px] text-gray-400 mb-1">通路介接時間</div>
+                                <div class="text-[10px] text-gray-400 mb-1" data-key="c1Mat1">通路介接時間</div>
                                 <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-forward mr-2 text-indigo-400"></i>-35%</div>
                             </div>
                             <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
-                                <div class="text-[10px] text-gray-400 mb-1">客戶留存率</div>
+                                <div class="text-[10px] text-gray-400 mb-1" data-key="c1Mat2">客戶留存率</div>
                                 <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-heart mr-2 text-pink-400"></i>90%</div>
+                            </div>
+                             <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
+                                <div class="text-[10px] text-gray-400 mb-1" data-key="c1Mat3">流量效率</div>
+                                <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-bolt mr-2 text-yellow-400"></i>+30%</div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
+                                <div class="text-[10px] text-gray-400 mb-1" data-key="c1Mat4">學習門檻</div>
+                                <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-clock mr-2 text-blue-400"></i>-50%</div>
                             </div>
                         </div>
                     </div>
@@ -218,37 +225,37 @@
                 <div class="md:col-span-7 p-10 md:p-14 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
                         <h4 class="text-3xl font-extrabold text-gray-900 mb-2">TheBuyerBuys</h4>
-                        <p class="text-lg text-indigo-600 font-medium mb-3">企業數位轉型與營運流程自動化</p>
+                        <p class="text-lg text-indigo-600 font-medium mb-3" data-key="c1Sub">企業數位轉型與營運流程自動化</p>
                         <div class="text-gray-500 text-sm space-y-1 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                            <p><span class="font-bold text-gray-700">客戶：</span>能藝企業 - 吳竹墨汁、KING JIM、KAPAMAX 等 15+ 文具美術品牌</p>
-                            <p><span class="invisible font-bold">客戶：</span>長寬貿易 - AUTOSOL、SLICE、FUJIYA、IREGA 等 20+ 五金手工具品牌</p>
+                            <p><span class="font-bold text-gray-700" data-key="clientLabel">客戶：</span><span data-key="c1Client1">能藝企業 - 吳竹墨汁、KING JIM 等 15+ 品牌</span></p>
+                            <p><span class="invisible font-bold" data-key="clientLabel">客戶：</span><span data-key="c1Client2">長寬貿易 - AUTOSOL、SLICE 等 20+ 五金品牌</span></p>
                         </div>
                     </div>
                     
                     <div class="space-y-8">
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-briefcase text-indigo-500 mr-2.5"></i>營運策略與團隊建置</h5>
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-briefcase text-indigo-500 mr-2.5"></i><span data-key="c1Sec1Title">營運策略與團隊建置</span></h5>
                             <ul class="space-y-3 text-gray-600 text-base leading-relaxed pl-1">
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span>為 5 家以上中小企業建立內部電商團隊，並同步負責 <strong>營運銷售管理</strong>。成功將 40+ 品牌上架至台灣前 10 大電商平台（包含 <strong>MOMO、PCHOME、Shopee</strong> 等），縮短 35% 通路介接時間。</span>
+                                    <span data-key="c1Sec1Pt1">為 5 家以上中小企業建立內部電商團隊，並同步負責 <strong>營運銷售管理</strong>。成功將 40+ 品牌上架至台灣前 10 大電商平台（包含 <strong>MOMO、PCHOME、Shopee</strong> 等），縮短 35% 通路介接時間，推動每月 25% 營收增長。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span>制定精細的月度銷售計畫（涵蓋 <strong>市場趨勢、庫存水位、YoY/MoM 分析</strong>），運用 <strong>Excel 樞紐分析</strong> 與 <strong>Python 競品爬蟲</strong> 識別潛力產品，據此協商採購條件，保持 <strong>每年 20%+</strong> 的營收穩定增長。</span>
+                                    <span data-key="c1Sec1Pt2">制定精細的月度銷售計畫，涵蓋 <strong>市場趨勢、庫存水位、YoY/MoM 分析</strong>，運用 <strong>Excel 樞紐分析</strong> 與 <strong>Python 競品爬蟲</strong> 識別潛力產品，據此協商採購條件，保持 <strong>每年 20%+</strong> 的營收穩定增長。</span>
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-chart-pie text-indigo-500 mr-2.5"></i>數據技術與行銷應用</h5>
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-chart-pie text-indigo-500 mr-2.5"></i><span data-key="c1Sec2Title">數據技術與行銷應用</span></h5>
                             <ul class="space-y-3 text-gray-600 text-base leading-relaxed pl-1">
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>Looker Studio 儀表板：</strong>設定網站表現儀表板，追蹤使用者行為與廣告成效，加快跨部門優化決策。流量效率提升 30%，<strong>產品銷售額提高 74%</strong>。</span>
+                                    <span data-key="c1Sec2Pt1"><strong>Looker Studio 儀表板：</strong>設定網站表現儀表板，追蹤使用者行為與廣告成效，加快跨部門優化決策。流量效率提升 30%，<strong>產品銷售額提高 74%</strong>。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>行銷與工具優化：</strong>利用 GA 精確鎖定受眾，執行 Google、Meta、Line 廣告計畫；同時設計易上手的 <strong>Excel Pivot 分析工具</strong>，降低團隊成員 50% 的學習門檻。</span>
+                                    <span data-key="c1Sec2Pt2"><strong>行銷與工具優化：</strong>利用 GA 精確鎖定受眾，執行 Google、Meta、Line 廣告計畫；同時設計易上手的 <strong>Excel Pivot 分析工具</strong>，降低團隊成員 50% 的學習門檻。</span>
                                 </li>
                             </ul>
                         </div>
@@ -264,6 +271,11 @@
                 <!-- Left: Dashboard Visual (Green) -->
                 <div class="md:col-span-5 bg-emerald-50 p-8 flex flex-col justify-center relative overflow-hidden">
                     <div class="relative z-10 h-full flex flex-col justify-center">
+                         <!-- Added Label -->
+                        <div class="flex items-center space-x-2 mb-2">
+                             <span class="px-3 py-1 bg-white border border-emerald-200 text-emerald-600 text-xs font-bold rounded-full shadow-sm" data-key="c2Tag">商業成長</span>
+                        </div>
+
                         <div class="dashboard-card p-6 rounded-xl mb-6">
                             <h5 class="text-xs font-bold text-gray-500 uppercase mb-4 text-center">YoY Growth Performance</h5>
                             <div class="h-48 relative">
@@ -277,11 +289,11 @@
                             <div class="flex justify-around mt-4 text-center">
                                 <div>
                                     <span class="block text-2xl font-bold text-emerald-600">+173%</span>
-                                    <span class="text-[10px] text-gray-500 uppercase">C2C 營收</span>
+                                    <span class="text-[10px] text-gray-500 uppercase" data-key="c2ChartLabel1">C2C 營收</span>
                                 </div>
                                 <div>
                                     <span class="block text-2xl font-bold text-teal-600">+142%</span>
-                                    <span class="text-[10px] text-gray-500 uppercase">B2B 訂單</span>
+                                    <span class="text-[10px] text-gray-500 uppercase" data-key="c2ChartLabel2">B2B 訂單</span>
                                 </div>
                             </div>
                         </div>
@@ -292,8 +304,8 @@
                                 <i class="fas fa-globe-americas text-lg"></i>
                             </div>
                             <div>
-                                <div class="text-sm font-bold text-gray-800">成功開拓中東市場</div>
-                                <div class="text-xs text-gray-500">一週內完成物流功能上線</div>
+                                <div class="text-sm font-bold text-gray-800" data-key="c2BadgeTitle">成功開拓中東市場</div>
+                                <div class="text-xs text-gray-500" data-key="c2BadgeDesc">一週內完成物流功能上線</div>
                             </div>
                         </div>
                     </div>
@@ -303,30 +315,30 @@
                 <div class="md:col-span-7 p-10 md:p-12 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
                         <h4 class="text-3xl font-extrabold text-gray-900 mb-2">Five Metal Shop</h4>
-                        <p class="text-lg text-emerald-600 font-medium mb-3">Calendar Project - 跨國市場策略與營收爆發</p>
+                        <p class="text-lg text-emerald-600 font-medium mb-3" data-key="c2Sub">Calendar Project - 跨國市場策略與營收爆發</p>
                     </div>
                     
                     <div class="space-y-8">
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-fire-alt text-emerald-500 mr-2.5"></i>挑戰</h5>
-                            <p class="text-gray-600 leading-relaxed text-base">
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-fire-alt text-emerald-500 mr-2.5"></i><span data-key="challenge">挑戰</span></h5>
+                            <p class="text-gray-600 leading-relaxed text-base" data-key="c2ChalDesc">
                                 需在短時間內將單一產品推向全球市場，同時面對20多個國家不同的物流限制與行銷渠道差異，缺乏精準的市場切入點。
                             </p>
                         </div>
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-lightbulb text-emerald-500 mr-2.5"></i>數據分析與行動</h5>
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-lightbulb text-emerald-500 mr-2.5"></i><span data-key="analysisAction">數據分析與行動</span></h5>
                             <ul class="space-y-3 text-gray-600 text-base leading-relaxed pl-1">
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>精準分眾與競品分析：</strong>深入分析競品定價與區域消費趨勢，將全球市場細分為台灣、歐美、亞洲（非中文）三大區塊，制定差異化的行銷溝通與廣告投放策略。</span>
+                                    <span data-key="c2Act1"><strong>精準分眾與競品分析：</strong>深入分析競品定價與區域消費趨勢，將全球市場細分為台灣、歐美、亞洲非中文區三大區塊，制定差異化的行銷溝通與廣告投放策略。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>物流時程與採購迴轉：</strong>分析 20+ 國跨國物流時程與成本結構，優化配送路徑縮短 50% 到貨時間；依據 B2B 預購數據（聖誕檔期）推算採購迴轉率，精準控管庫存以支撐 142% 的訂單成長。</span>
+                                    <span data-key="c2Act2"><strong>物流時程與採購迴轉：</strong>分析 20+ 國跨國物流時程與成本結構，優化配送路徑縮短 50% 到貨時間；依據 B2B 預購數據推算採購迴轉率，精準控管庫存以支撐 142% 的訂單成長。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>敏捷流量洞察：</strong>透過 GA 實時監測發現中東市場流量異常增長，迅速識別商機，指揮工程團隊在一週內完成沙烏地阿拉伯專屬物流功能開發與上線。</span>
+                                    <span data-key="c2Act3"><strong>敏捷流量洞察：</strong>透過 GA 實時監測發現中東市場流量異常增長，迅速識別商機，指揮工程團隊在一週內完成沙烏地阿拉伯專屬物流功能開發與上線。</span>
                                 </li>
                             </ul>
                         </div>
@@ -343,13 +355,13 @@
                 <div class="md:col-span-5 bg-sky-50 p-8 flex flex-col justify-center relative overflow-hidden">
                     <div class="relative z-10 h-full flex flex-col justify-between">
                         <div class="flex items-center space-x-2 mb-2">
-                             <span class="px-3 py-1 bg-white border border-sky-200 text-sky-600 text-xs font-bold rounded-full shadow-sm">營運效率</span>
+                             <span class="px-3 py-1 bg-white border border-sky-200 text-sky-600 text-xs font-bold rounded-full shadow-sm" data-key="c3Tag">營運效率</span>
                         </div>
 
                         <!-- Chart 3: Efficiency Bar Chart -->
                         <div class="dashboard-card p-5 rounded-xl mb-6">
                             <div class="flex justify-between items-center mb-4">
-                                <span class="text-xs font-bold text-gray-500 uppercase">客服查詢量 (Inquiries)</span>
+                                <span class="text-xs font-bold text-gray-500 uppercase" data-key="c3ChartTitle">客服查詢量</span>
                                 <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">-40%</span>
                             </div>
                             <div class="h-40">
@@ -361,16 +373,16 @@
                         <div class="grid grid-cols-2 gap-4 mt-auto">
                             <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm hover:shadow-md transition">
                                 <div class="text-2xl font-bold text-sky-600">10%</div>
-                                <div class="text-xs text-gray-500 font-medium">回購率提升</div>
+                                <div class="text-xs text-gray-500 font-medium" data-key="c3Stat1">回購率提升</div>
                             </div>
                             <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm hover:shadow-md transition">
                                 <div class="text-2xl font-bold text-sky-600">30%</div>
-                                <div class="text-xs text-gray-500 font-medium">折扣碼使用率</div>
+                                <div class="text-xs text-gray-500 font-medium" data-key="c3Stat2">折扣碼使用率</div>
                             </div>
                         </div>
                         
                         <div class="mt-6 text-center">
-                             <span class="inline-flex items-center bg-green-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg transform hover:scale-105 transition"><i class="fas fa-check-circle mr-2"></i>上線後 0 客訴</span>
+                             <span class="inline-flex items-center bg-green-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg transform hover:scale-105 transition"><i class="fas fa-check-circle mr-2"></i><span data-key="c3Badge">上線後 0 客訴</span></span>
                         </div>
                     </div>
                 </div>
@@ -379,30 +391,30 @@
                 <div class="md:col-span-7 p-10 md:p-12 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
                         <h4 class="text-3xl font-extrabold text-gray-900 mb-3">OOO</h4>
-                        <p class="text-lg text-sky-600 font-medium mb-3">Outstanding Ordinary Object - 品牌官網系統化與會員增長</p>
+                        <p class="text-lg text-sky-600 font-medium mb-3" data-key="c3Sub">Outstanding Ordinary Object - 品牌官網系統化與會員增長</p>
                     </div>
                     
                     <div class="space-y-8">
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-fire-alt text-sky-500 mr-2.5"></i>客戶痛點</h5>
-                            <p class="text-gray-600 leading-relaxed text-base">
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-fire-alt text-sky-500 mr-2.5"></i><span data-key="challenge">挑戰</span></h5>
+                            <p class="text-gray-600 leading-relaxed text-base" data-key="c3ChalDesc">
                                 自有品牌缺乏會員分級制度，數據散落在不同平台，且舊系統無法支援複雜促銷，導致高度依賴人工客服查詢訂單，營運成本高昂。
                             </p>
                         </div>
                         <div>
-                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-lightbulb text-sky-500 mr-2.5"></i>策略與行動</h5>
+                            <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-lightbulb text-sky-500 mr-2.5"></i><span data-key="strategyAction">策略與行動</span></h5>
                             <ul class="space-y-3 text-gray-600 text-base leading-relaxed pl-1">
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>產品需求規劃：</strong>主導官網改版，撰寫詳細功能規格書，規劃會員分級與購物車促銷邏輯。</span>
+                                    <span data-key="c3Act1"><strong>產品需求規劃：</strong>主導官網改版，撰寫詳細功能規格書，規劃會員分級與購物車促銷邏輯。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>跨部門技術協作：</strong>整合第三方登入與金流系統，協調業務需求與工程限制，解決資料串接的認知落差。</span>
+                                    <span data-key="c3Act2"><strong>跨部門技術協作：</strong>整合第三方登入與金流系統，協調業務需求與工程限制，解決資料串接的認知落差。</span>
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span><strong>使用者體驗優化：</strong>設計透明化的訂單查詢介面，解決商家被客訴淹沒的營運痛點。</span>
+                                    <span data-key="c3Act3"><strong>使用者體驗優化：</strong>設計透明化的訂單查詢介面，解決商家被客訴淹沒的營運痛點。</span>
                                 </li>
                             </ul>
                         </div>
@@ -416,15 +428,15 @@
     <!-- Experience Timeline -->
     <section class="bg-gray-50 py-16 border-t border-gray-100">
         <div class="max-w-5xl mx-auto px-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-10 text-center">工作經歷亮點</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-10 text-center" data-key="expTitle">工作經歷亮點</h3>
             <div class="max-w-3xl mx-auto space-y-10 timeline-border pl-8 relative">
                 
                 <!-- Ezily -->
                 <div class="relative group">
                     <span class="absolute -left-[39px] top-1.5 bg-blue-600 rounded-full w-5 h-5 border-4 border-white shadow-md group-hover:scale-125 transition-transform"></span>
-                    <h4 class="text-lg font-bold text-gray-900">業務開發與產品經理 <span class="text-sm font-normal text-gray-500 ml-2">Ezily 易霖科技</span></h4>
+                    <h4 class="text-lg font-bold text-gray-900" data-key="job1Title">業務開發與產品經理 <span class="text-sm font-normal text-gray-500 ml-2">Ezily 易霖科技</span></h4>
                     <p class="text-sm text-gray-400 mb-2 font-mono">2025.05 - 2025.12</p>
-                    <div class="text-gray-600 text-sm leading-relaxed">
+                    <div class="text-gray-600 text-sm leading-relaxed" data-key="job1Desc">
                         <ul class="list-disc list-outside ml-4 space-y-2">
                             <li><strong>SaaS 解決方案規劃與需求分析：</strong> 深入訪談品牌客戶，將客戶的營運痛點與行銷需求，轉譯為可執行的產品功能建議。協助優化產品路徑圖，提升產品的市場契合度。</li>
                             <li><strong>GTM 策略與跨部門協作：</strong> 規劃新產品上市策略，製作提案簡報並主導產品探索會議，確保產品開發方向與市場需求對齊。</li>
@@ -436,9 +448,9 @@
                 <!-- Five Metal Shop -->
                 <div class="relative group">
                     <span class="absolute -left-[39px] top-1.5 bg-gray-300 rounded-full w-5 h-5 border-4 border-white shadow-sm group-hover:bg-blue-400 transition-colors"></span>
-                    <h4 class="text-lg font-bold text-gray-900">數位營運、業務開發與市場策略助理總監 <span class="text-sm font-normal text-gray-500 ml-2">Five Metal Shop</span></h4>
+                    <h4 class="text-lg font-bold text-gray-900" data-key="job2Title">數位營運、業務開發與市場策略助理總監 <span class="text-sm font-normal text-gray-500 ml-2">Five Metal Shop</span></h4>
                     <p class="text-sm text-gray-400 mb-2 font-mono">2019.05 - 2024.05</p>
-                    <div class="text-gray-600 text-sm leading-relaxed">
+                    <div class="text-gray-600 text-sm leading-relaxed" data-key="job2Desc">
                         <ul class="list-disc list-outside ml-4 space-y-2">
                             <li><strong>主導內部營運系統開發與優化：</strong> 帶領工程、設計、營運跨職能團隊，運用 Kanban 管理開發優先級。繪製 MVP Wireframe 並制定產品規格書，成功將 20+ 跨國物流與金流作業標準化，大幅降低 15% 人力成本。</li>
                             <li><strong>電商系統整合與功能導入：</strong> 針對各國物流複雜商業邏輯及使用者旅程痛點，撰寫功能需求文件供工程團隊開發。成功導入第三方 SaaS 支付與物流系統，解決跨部門資訊落差，縮短 50% 物流配送時間，並提升 40% 客戶滿意度。</li>
@@ -451,9 +463,9 @@
                 <!-- TheBuyerBuys -->
                 <div class="relative group">
                     <span class="absolute -left-[39px] top-1.5 bg-gray-300 rounded-full w-5 h-5 border-4 border-white shadow-sm group-hover:bg-blue-400 transition-colors"></span>
-                    <h4 class="text-lg font-bold text-gray-900">創辦人及顧問 <span class="text-sm font-normal text-gray-500 ml-2">TheBuyerBuys</span></h4>
+                    <h4 class="text-lg font-bold text-gray-900" data-key="job3Title">創辦人及顧問 <span class="text-sm font-normal text-gray-500 ml-2">TheBuyerBuys</span></h4>
                     <p class="text-sm text-gray-400 mb-2 font-mono">2017.07 - 2025.02</p>
-                    <div class="text-gray-600 text-sm leading-relaxed">
+                    <div class="text-gray-600 text-sm leading-relaxed" data-key="job3Desc">
                         <ul class="list-disc list-outside ml-4 space-y-2">
                             <li><strong>建立自動化數據儀表板：</strong> 運用 Google Looker Studio，整合銷售與數位行銷數據，為客戶建立自動化報表，大幅縮短跨部門決策時間。</li>
                             <li><strong>營運流程工具優化：</strong> 設計客製化 Excel Pivot 分析模組，協助中小企業客戶標準化進銷存管理流程，降低 50% 人力操作門檻。</li>
@@ -465,9 +477,9 @@
                 <!-- Creema Inc -->
                 <div class="relative group">
                     <span class="absolute -left-[39px] top-1.5 bg-gray-300 rounded-full w-5 h-5 border-4 border-white shadow-sm group-hover:bg-blue-400 transition-colors"></span>
-                    <h4 class="text-lg font-bold text-gray-900">Assistant Director, Overseas Business and IPO Mission <span class="text-sm font-normal text-gray-500 ml-2">Creema Inc</span></h4>
+                    <h4 class="text-lg font-bold text-gray-900" data-key="job4Title">Assistant Director, Overseas Business and IPO Mission <span class="text-sm font-normal text-gray-500 ml-2">Creema Inc</span></h4>
                     <p class="text-sm text-gray-400 mb-2 font-mono">2017.07 - 2018.05</p>
-                    <div class="text-gray-600 text-sm leading-relaxed">
+                    <div class="text-gray-600 text-sm leading-relaxed" data-key="job4Desc">
                         <ul class="list-disc list-outside ml-4 space-y-2">
                             <li><strong>區域市場拓展：</strong> 執行日本總部之全球策略，負責台灣、香港、澳門市場的在地化落地。擔任 Regional 端與日本 HQ 的主要溝通窗口，協調跨國金流與物流的營運需求。</li>
                             <li><strong>業績成長與供應商管理：</strong> 推動 210% GMV 成長及 15% 自然流量增長，提升 30% 供應商參與度，協助公司成功 IPO。</li>
@@ -479,13 +491,49 @@
         </div>
     </section>
 
+    <!-- Skills & Tools Section -->
+    <section class="bg-gray-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-10 text-center" data-key="skillTitle">核心技能與工具</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Skill Column 1 -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-purple-500 transition-colors">
+                    <h4 class="font-bold text-purple-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
+                        <i class="fas fa-database mr-2"></i><span data-key="skill1Title">數據策略與工具</span>
+                    </h4>
+                    <ul class="space-y-4 text-gray-300 text-sm" data-key="skill1List">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Looker Studio</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Google Analytics 數據分析</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Excel Pivot 模組化設計</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>數據洞察與商業決策</li>
+                    </ul>
+                </div>
+                <!-- Skill Column 2 -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-blue-500 transition-colors">
+                    <h4 class="font-bold text-blue-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
+                        <i class="fas fa-laptop-code mr-2"></i><span data-key="skill2Title">產品與營運</span>
+                    </h4>
+                    <ul class="space-y-4 text-gray-300 text-sm" data-key="skill2List">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>產品規格與功能定義</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Kanban 專案管理</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>SaaS / LINE Mini App 規劃</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>跨部門技術溝通</li>
+                    </ul>
+                </div>
+                <!-- Skill Column 3 -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
+                    <h4 class="font-bold text-green-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
+                        <i class="fas fa-chart-line mr-2"></i><span data-key="skill3Title">成長與商業策略</span>
+                    </h4>
+                    <ul class="space-y-4 text-gray-300 text-sm" data-key="skill3List">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>顧問式提案與簡報</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>產品上市策略規劃</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>會員經營與 CRM</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>跨境市場拓展</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-white py-12 border-t border-gray-200 mt-auto">
         <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Let's discuss how I can contribute to your team.</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-8" data-key="contactTitle">Let's discuss how I can contribute to your team.</h2>
             <div class="flex justify-center gap-6 mb-8">
                 <a href="mailto:changyutyng@gmail.com" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg hover:shadow-xl flex items-center transform hover:-translate-y-1">
-                    <i class="fas fa-envelope mr-2"></i> Email Me
+                    <i class="fas fa-envelope mr-2"></i> <span data-key="emailBtn">寄信給我</span>
                 </a>
                 <a href="tel:+886930698828" class="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm hover:shadow-md flex items-center transform hover:-translate-y-1">
                     <i class="fas fa-phone mr-2"></i> (+886) 930-698-828
@@ -497,6 +545,191 @@
 
     <!-- Interactive Scripts -->
     <script>
+        // Language Data
+        const translations = {
+            zh: {
+                name: '張玉婷 <span class="text-indigo-600">Eunice Yuting Chang</span>',
+                role: 'Senior Project Manager, Solution Consultant | Driving Growth with SaaS, Data & AI Strategies',
+                contactBtn: '寄信給我',
+                heroBadge: '專業摘要',
+                heroTitle1: '將複雜數據轉化為',
+                heroTitle2: '可變現的商業決策',
+                heroDesc: '擁有 10 年以上跨國電商與數位轉型經驗。擅長擔任 <strong class="font-bold text-gray-900 highlight-marker">商業需求 與 產品開發</strong> 之間的橋樑，透過數據洞察解決營運痛點，並將分析服務轉化為具體的產品價值。',
+                hl1Title: '數據分析驅動分析',
+                hl1Desc: '運用 GA、Looker Studio 與 Python 爬蟲，挖掘市場潛力，曾推動單一產品營收成長 173%。',
+                hl2Title: '顧問式溝通提案',
+                hl2Desc: '將一次性專案轉化為標準化模組（如 Excel Pivot 工具），降低客戶學習門檻 50%，提升服務價值。',
+                hl3Title: '服務模組產品化',
+                hl3Desc: '擔任技術與商業端的單一窗口，有效化解跨部門認知落差，縮短 35% 專案落地時間。',
+                metric1: '協助品牌數位轉型',
+                metric2: '推動每年營收增長',
+                metric3: '流程效率提升',
+                metric4: '品牌認知成長',
+                caseTitle: '精選成功案例',
+                c1Tag: '數據洞察',
+                c1Chart1Label: '產品銷售額',
+                c1Chart2Label: '廣告效率提升',
+                c1Mat1: '通路介接時間',
+                c1Mat2: '客戶留存率',
+                c1Mat3: '流量效率',
+                c1Mat4: '學習門檻',
+                c1Sub: '企業數位轉型與營運流程自動化',
+                clientLabel: '客戶：',
+                c1Client1: '能藝企業 - 吳竹墨汁、KING JIM 等 15+ 品牌',
+                c1Client2: '長寬貿易 - AUTOSOL、SLICE、FUJIYA、IREGA 等 20+ 五金手工具品牌',
+                c1Sec1Title: '營運策略與團隊建置',
+                c1Sec1Pt1: '為 5 家以上中小企業建立內部電商團隊，並同步負責 <strong>營運銷售管理</strong>。成功將 40+ 品牌上架至台灣前 10 大電商平台（包含 <strong>MOMO、PCHOME、Shopee</strong> 等），縮短 35% 通路介接時間，推動每月 25% 營收增長。',
+                c1Sec1Pt2: '制定精細的月度銷售計畫，涵蓋 <strong>市場趨勢、庫存水位、YoY/MoM 分析</strong>，運用 <strong>Excel 樞紐分析</strong> 與 <strong>Python 競品爬蟲</strong> 識別潛力產品，據此協商採購條件，保持 <strong>每年 20%+</strong> 的營收穩定增長。',
+                c1Sec2Title: '數據技術與行銷應用',
+                c1Sec2Pt1: '<strong>Looker Studio 儀表板：</strong>設定網站表現儀表板，追蹤使用者行為與廣告成效，加快跨部門優化決策。流量效率提升 30%，<strong>產品銷售額提高 74%</strong>。',
+                c1Sec2Pt2: '<strong>行銷與工具優化：</strong>利用 GA 精確鎖定受眾，執行 Google、Meta、Line 廣告計畫；同時設計易上手的 <strong>Excel Pivot 分析工具</strong>，降低團隊成員 50% 的學習門檻。',
+                c2ChartLabel1: 'C2C 營收',
+                c2ChartLabel2: 'B2B 訂單',
+                c2BadgeTitle: '成功開拓中東市場',
+                c2BadgeDesc: '一週內完成物流功能上線',
+                c2Tag: '商業成長',
+                c2Sub: 'Calendar Project - 跨國市場策略與營收爆發',
+                challenge: '挑戰',
+                c2ChalDesc: '需在短時間內將單一產品推向全球市場，同時面對20多個國家不同的物流限制與行銷渠道差異，缺乏精準的市場切入點。',
+                analysisAction: '數據分析與行動',
+                c2Act1: '<strong>精準分眾與競品分析：</strong>深入分析競品定價與區域消費趨勢，將全球市場細分為台灣、歐美、亞洲非中文區三大區塊，制定差異化的行銷溝通與廣告投放策略。',
+                c2Act2: '<strong>物流時程與採購迴轉：</strong>分析 20+ 國跨國物流時程與成本結構，優化配送路徑縮短 50% 到貨時間；依據 B2B 預購數據推算採購迴轉率，精準控管庫存以支撐 142% 的訂單成長。',
+                c2Act3: '<strong>敏捷流量洞察：</strong>透過 GA 實時監測發現中東市場流量異常增長，迅速識別商機，指揮工程團隊在一週內完成沙烏地阿拉伯專屬物流功能開發與上線。',
+                c3Tag: '營運效率',
+                c3ChartTitle: '客服查詢量',
+                c3Stat1: '回購率提升',
+                c3Stat2: '折扣碼使用率',
+                c3Badge: '上線後 0 客訴',
+                c3Sub: 'Outstanding Ordinary Object - 品牌官網系統化與會員增長',
+                c3ChalDesc: '自有品牌缺乏會員分級制度，數據散落在不同平台，且舊系統無法支援複雜促銷，導致高度依賴人工客服查詢訂單，營運成本高昂。',
+                strategyAction: '策略與行動',
+                c3Act1: '<strong>產品需求規劃：</strong>主導官網改版，撰寫詳細功能規格書，規劃會員分級與購物車促銷邏輯。',
+                c3Act2: '<strong>跨部門技術協作：</strong>整合第三方登入與金流系統，協調業務需求與工程限制，解決資料串接的認知落差。',
+                c3Act3: '<strong>使用者體驗優化：</strong>設計透明化的訂單查詢介面，解決商家被客訴淹沒的營運痛點。',
+                expTitle: '工作經歷亮點',
+                job1Title: '業務開發與產品經理 <span class="text-sm font-normal text-gray-500 ml-2">Ezily 易霖科技</span>',
+                job1Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>SaaS 解決方案規劃與需求分析：</strong> 深入訪談品牌客戶，將客戶的營運痛點與行銷需求，轉譯為可執行的產品功能建議。協助優化產品路徑圖，提升產品的市場契合度。</li><li><strong>GTM 策略與跨部門協作：</strong> 規劃新產品上市策略，製作提案簡報並主導產品探索會議，確保產品開發方向與市場需求對齊。</li><li><strong>LINE Mini App 產品規劃與導入：</strong> LINE台灣合作專案的產品落地團隊核心成員。定義初期產品功能需求，規劃使用者流程，並協調產品、技術與客戶成功團隊開發時程，確保產品如期上線並符合客戶商業目標。</li></ul>',
+                job2Title: '數位營運、業務開發與市場策略助理總監 <span class="text-sm font-normal text-gray-500 ml-2">Five Metal Shop</span>',
+                job2Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>主導內部營運系統開發與優化：</strong> 帶領工程、設計、營運跨職能團隊，運用 Kanban 管理開發優先級。繪製 MVP Wireframe 並制定產品規格書，成功將 20+ 跨國物流與金流作業標準化，大幅降低 15% 人力成本。</li><li><strong>電商系統整合與功能導入：</strong> 針對各國物流複雜商業邏輯及使用者旅程痛點，撰寫功能需求文件供工程團隊開發。成功導入第三方 SaaS 支付與物流系統，解決跨部門資訊落差，縮短 50% 物流配送時間，並提升 40% 客戶滿意度。</li><li><strong>商業與技術溝通協調：</strong> 作為業務端與技術端的單一窗口，負責釐清商業需求的可行性，有效化解業務需求及技術工程跨部門對功能認知的衝突；確保開發資源精準投入於高商業價值的項目，成功透過優化單一商品的銷售流程，於 4 個月內創造新台幣 200 萬營收。</li><li><strong>全品牌業務計畫更新：</strong> 詳細分析消費者旅程與潛在市場區隔，與 25+ 家全球 B2B 合作夥伴合作，建立產業趨勢及採購業務延續性。</li></ul>',
+                job3Title: '創辦人及顧問 <span class="text-sm font-normal text-gray-500 ml-2">TheBuyerBuys</span>',
+                job3Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>建立自動化數據儀表板：</strong> 運用 Google Looker Studio，整合銷售與數位行銷數據，為客戶建立自動化報表，大幅縮短跨部門決策時間。</li><li><strong>營運流程工具優化：</strong> 設計客製化 Excel Pivot 分析模組，協助中小企業客戶標準化進銷存管理流程，降低 50% 人力操作門檻。</li><li><strong>電商團隊建置與營收成長：</strong> 為 5 家以上中小企業建立內部電商團隊，量身打造數位行銷策略，推動每月 25% 營收成長，並縮短 35% 通路介接時間。</li></ul>',
+                job4Title: 'Assistant Director, Overseas Business and IPO Mission <span class="text-sm font-normal text-gray-500 ml-2">Creema Inc</span>',
+                job4Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>區域市場拓展：</strong> 執行日本總部之全球策略，負責台灣、香港、澳門市場的在地化落地。擔任 Regional 端與日本 HQ 的主要溝通窗口，協調跨國金流與物流的營運需求。</li><li><strong>業績成長與供應商管理：</strong> 推動 210% GMV 成長及 15% 自然流量增長，提升 30% 供應商參與度，協助公司成功 IPO。</li></ul>',
+                skillTitle: '核心技能與工具',
+                skill1Title: '數據策略與工具',
+                skill1List: '<li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Looker Studio</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Google Analytics 數據分析</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Excel Pivot 模組化設計</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>數據洞察與商業決策</li>',
+                skill2Title: '產品與營運',
+                skill2List: '<li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>產品規格與功能定義</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Kanban 專案管理</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>SaaS / LINE Mini App 規劃</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>跨部門技術溝通</li>',
+                skill3Title: '成長與商業策略',
+                skill3List: '<li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>顧問式提案與簡報</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>產品上市策略規劃</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>會員經營與 CRM</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>跨境市場拓展</li>',
+                contactTitle: 'Let\'s discuss how I can contribute to your team.',
+                emailBtn: '寄信給我'
+            },
+            en: {
+                name: 'Eunice Yuting Chang <span class="text-indigo-600"></span>',
+                role: 'Senior Project Manager, Solution Consultant | Driving Growth with SaaS, Data & AI Strategies',
+                contactBtn: 'Contact Me',
+                heroBadge: 'PROFESSIONAL SUMMARY',
+                heroTitle1: 'Transforming Complex Data into',
+                heroTitle2: 'Monetizable Business Decisions',
+                heroDesc: 'With over 10 years of experience in cross-border e-commerce and digital transformation, I specialize in <strong class="font-bold text-gray-900 highlight-marker">bridging the gap between business needs and product development</strong>. My expertise lies in resolving operational pain points through data insights and converting analytical services into tangible product value.',
+                hl1Title: 'Analytics-Driven Insights',
+                hl1Desc: 'Leveraged GA, Looker Studio, and Python crawlers to uncover market potential, driving a 173% revenue growth for a single product.',
+                hl2Title: 'Consultative Proposal Strategy',
+                hl2Desc: 'Transformed ad-hoc projects into standardized modules (e.g., Excel Pivot tools), reducing client learning curves by 50% and increasing service value.',
+                hl3Title: 'Service Productization',
+                hl3Desc: 'Served as the single point of contact between technical and business teams, effectively resolving cross-departmental cognitive gaps and shortening project launch time by 35%.',
+                metric1: 'Brands Assisted',
+                metric2: 'Annual Revenue Growth',
+                metric3: 'Efficiency Increase',
+                metric4: 'Brand Awareness Growth',
+                caseTitle: 'Selected Case Studies',
+                c1Tag: 'Data Insight',
+                c1Chart1Label: 'Product Sales',
+                c1Chart2Label: 'Ad Efficiency Boost',
+                c1Mat1: 'Channel Integration Time',
+                c1Mat2: 'Client Retention Rate',
+                c1Mat3: 'Traffic Efficiency',
+                c1Mat4: 'Learning Curve',
+                c1Sub: 'Digital Transformation & Operational Automation',
+                clientLabel: 'Clients:',
+                c1Client1: 'Nenn Yih Enterprise - Kuretake Ink, KING JIM, etc. (15+ Brands)',
+                c1Client2: 'Chang Kuan Trading - AUTOSOL, SLICE, etc. (20+ Hardware Brands)',
+                c1Sec1Title: 'Operational Strategy & Team Building',
+                c1Sec1Pt1: 'Built internal e-commerce teams for 5+ SMEs and managed <strong>sales operations</strong>. Successfully launched 40+ brands on Taiwan\'s top 10 e-commerce platforms (including <strong>MOMO, PCHOME, Shopee</strong>), reducing channel integration time by 35% and driving 25% monthly revenue growth.',
+                c1Sec1Pt2: 'Formulated precise monthly sales plans covering <strong>market trends, inventory levels, YoY/MoM analysis</strong>, using <strong>Excel Pivot tables</strong> and <strong>Python competitive crawlers</strong> to identify potential products, negotiating procurement conditions to maintain <strong>20%+ annual revenue growth</strong>.',
+                c1Sec2Title: 'Data Tech & Marketing Application',
+                c1Sec2Pt1: '<strong>Looker Studio Dashboards:</strong> Set up website performance dashboards to track user behavior and ad performance, accelerating cross-departmental optimization decisions. Increased traffic efficiency by 30% and <strong>product sales by 74%</strong>.',
+                c1Sec2Pt2: '<strong>Marketing & Tool Optimization:</strong> Utilized GA to precisely target audiences for Google, Meta, and Line ad campaigns; designed user-friendly <strong>Excel Pivot tools</strong>, reducing team member learning curves by 50%.',
+                c2ChartLabel1: 'C2C Revenue',
+                c2ChartLabel2: 'B2B Orders',
+                c2BadgeTitle: 'New Market Entry (Middle East)',
+                c2BadgeDesc: 'Logistics function launched in 1 week',
+                c2Tag: 'Business Growth',
+                c2Sub: 'Calendar Project - Cross-Border Market Strategy & Revenue Explosion',
+                challenge: 'Challenge',
+                c2ChalDesc: 'Needed to launch a single product to the global market in a short time while facing diverse logistics restrictions and marketing channel differences across 20+ countries, lacking a precise market entry point.',
+                analysisAction: 'Data Analysis & Action',
+                c2Act1: '<strong>Precise Segmentation & Competitive Analysis:</strong> Deeply analyzed competitive pricing and regional consumption trends, segmenting the global market into Taiwan, Europe/US, and Non-Chinese speaking Asia to formulate differentiated marketing communications and ad strategies.',
+                c2Act2: '<strong>Logistics Timeline & Procurement Turnover:</strong> Analyzed cross-border logistics timelines and cost structures across 20+ countries, optimizing delivery routes to shorten delivery time by 50%; forecasted procurement turnover based on B2B pre-order data, precisely controlling inventory to support 142% order growth.',
+                c2Act3: '<strong>Agile Traffic Insight:</strong> Detected abnormal traffic growth in the Middle East market via GA real-time monitoring, quickly identified the opportunity, and directed the engineering team to develop and launch a dedicated logistics function for Saudi Arabia within one week.',
+                c3Tag: 'Efficiency',
+                c3ChartTitle: 'CS Inquiries',
+                c3Stat1: 'Retention Rate',
+                c3Stat2: 'Coupon Usage',
+                c3Badge: '0 Complaints after Launch',
+                c3Sub: 'Outstanding Ordinary Object - Brand Site Systematization & Membership Growth',
+                c3ChalDesc: 'The private brand lacked a membership tier system, data was scattered across platforms, and the legacy system could not support complex promotions, leading to high reliance on manual CS order lookups and high operational costs.',
+                strategyAction: 'Strategy & Action',
+                c3Act1: '<strong>Product Requirement Planning:</strong> Led the official website revamp, writing detailed functional specifications (Spec) and planning membership tiers and shopping cart promotional logic.',
+                c3Act2: '<strong>Cross-Functional Tech Collaboration:</strong> Integrated third-party login and payment systems, coordinating business requirements with engineering constraints to resolve data connection cognitive gaps.',
+                c3Act3: '<strong>UX Optimization:</strong> Designed a transparent order lookup interface, resolving the operational pain point of merchants being overwhelmed by customer complaints.',
+                expTitle: 'Experience Highlights',
+                job1Title: 'Business Development & Project Manager <span class="text-sm font-normal text-gray-500 ml-2">Ezily Tech</span>',
+                job1Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>SaaS Solution Planning & Analysis:</strong> Conducted in-depth interviews with brand clients to translate operational pain points and marketing needs into actionable product feature suggestions. Assisted in optimizing the product roadmap to enhance market fit.</li><li><strong>GTM Strategy & Cross-Functional Collaboration:</strong> Planned new product launch strategies, created proposal presentations, and led product discovery meetings to ensure product development aligned with market needs.</li><li><strong>LINE Mini App Planning & Implementation:</strong> Core member of the product landing team for the LINE Taiwan collaboration project. Defined initial product feature requirements, planned user flows, and coordinated development schedules with product, tech, and CS teams to ensure on-time launch and alignment with client business goals.</li></ul>',
+                job2Title: 'Assistant Director, Digital Ops & Market Strategy <span class="text-sm font-normal text-gray-500 ml-2">Five Metal Shop</span>',
+                job2Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>Led Internal Ops System Development:</strong> Led a cross-functional team (Engineering, Design, Ops) using Kanban to manage priorities. Created MVP Wireframes and product specs, standardizing 20+ cross-border logistics/payment processes, reducing labor costs by 15%.</li><li><strong>E-commerce System Integration:</strong> Wrote functional requirement documents for complex logistics logic across countries. Successfully integrated third-party SaaS payment and logistics systems, resolving information gaps and reducing delivery time by 50%, increasing customer satisfaction by 40%.</li><li><strong>Business-Tech Communication:</strong> Served as the single point of contact, clarifying the feasibility of business requirements and resolving conflicts between business needs and engineering constraints; ensured resources were invested in high-value items, generating NT$2M revenue in 4 months by optimizing a single product sales flow.</li><li><strong>Annual Business Plan Update:</strong> Analyzed consumer journeys and potential market segments, collaborating with 25+ global B2B partners to establish industry trends and procurement continuity.</li></ul>',
+                job3Title: 'Founder & Consultant <span class="text-sm font-normal text-gray-500 ml-2">TheBuyerBuys</span>',
+                job3Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>Automated Data Dashboards:</strong> Utilized Google Looker Studio to integrate sales and digital marketing data, creating automated reports for clients and significantly shortening cross-departmental decision-making time.</li><li><strong>Ops Process Tool Optimization:</strong> Designed customized Excel Pivot analysis modules to help SME clients standardize inventory management processes, reducing the manual operation threshold by 50%.</li><li><strong>E-commerce Team Building & Revenue Growth:</strong> Built internal e-commerce teams for 5+ SMEs, tailored digital marketing strategies, driving 25% monthly revenue growth and shortening channel integration time by 35%.</li></ul>',
+                job4Title: 'Assistant Director, Overseas Business and IPO Mission <span class="text-sm font-normal text-gray-500 ml-2">Creema Inc</span>',
+                job4Desc: '<ul class="list-disc list-outside ml-4 space-y-2"><li><strong>Regional Market Expansion:</strong> Executed global strategies from Japan HQ, responsible for localization in Taiwan, Hong Kong, and Macau. Served as the main communication window between Regional and Japan HQ, coordinating cross-border payment and logistics operations.</li><li><strong>Performance Growth & Vendor Management:</strong> Drove 210% GMV growth and 15% organic traffic increase, improved vendor participation by 30%, assisting the company in its successful IPO.</li></ul>',
+                skillTitle: 'Core Skills & Tools',
+                skill1Title: 'Data Strategy & Tools',
+                skill1List: '<li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Looker Studio</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Google Analytics</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Excel Pivot Design</li><li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Data Insights & Business Decision</li>',
+                skill2Title: 'Product & Operations',
+                skill2List: '<li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Product Spec & Feature Definition</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Kanban Project Management</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>SaaS / LINE Mini App Planning</li><li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Cross-Functional Tech Communication</li>',
+                skill3Title: 'Growth & Business Strategy',
+                skill3List: '<li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Consultative Proposals & Presentations</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>GTM & Product Launch Strategy</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Membership Management & CRM</li><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Cross-Border Market Expansion</li>',
+                contactTitle: 'Let\'s discuss how I can contribute to your team.',
+                emailBtn: 'Email Me'
+            }
+        };
+
+        // Current Language
+        let currentLang = 'zh';
+
+        // Toggle Function
+        window.toggleLanguage = function() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            const data = translations[currentLang];
+            
+            // Update Toggle Button Label
+            document.getElementById('lang-label').innerText = currentLang === 'zh' ? 'English' : '中文';
+            
+            // Update Text Elements
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (data[key]) {
+                    el.innerHTML = data[key]; // Use innerHTML to support <strong> tags
+                }
+            });
+
+            // Re-render charts to update labels (optional, if charts have text)
+            // For this version, charts have minimal text, so we can skip full re-render or just update specific text if needed.
+            // A full re-init is simple enough here.
+            initCharts(); 
+        };
+
         // Count Up Animation
         const counters = document.querySelectorAll('.counter');
         const speed = 200;
@@ -532,81 +765,101 @@
         };
 
         // Initialize Charts Function
-        const initCharts = () => {
-            
-            // Chart 1: Sales Growth (Bar)
-            const ctxSales = document.getElementById('chartSalesGrowth').getContext('2d');
-            new Chart(ctxSales, {
-                type: 'bar',
-                data: {
-                    labels: ['Before', 'After'],
-                    datasets: [{
-                        label: 'Sales Index',
-                        data: [100, 174],
-                        backgroundColor: ['#c7d2fe', '#4f46e5'],
-                        borderRadius: 6,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: chartConfig
-            });
+        let chartInstances = {}; // Store instances to destroy before re-creating
 
-            // Chart 2: Revenue Trend (Line)
-            const ctxTrend = document.getElementById('chartRevenueTrend').getContext('2d');
-            new Chart(ctxTrend, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'Revenue',
-                        data: [100, 105, 110, 118, 122, 125],
-                        borderColor: '#4f46e5',
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 0
-                    }]
-                },
-                options: { ...chartConfig, scales: { x: { display: false }, y: { display: false } } }
-            });
-
-            // Chart 3: YoY Growth (Doughnut)
-            const ctxYoY = document.getElementById('chartYoYGrowth').getContext('2d');
-            new Chart(ctxYoY, {
-                type: 'doughnut',
-                data: {
-                    labels: ['C2C Growth', 'Base'],
-                    datasets: [{
-                        data: [173, 27], // Visual representation
-                        backgroundColor: ['#059669', '#d1fae5'],
-                        borderWidth: 0,
-                        cutout: '75%'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
-                    animation: { animateScale: true, animateRotate: true }
+        function initCharts() {
+            // Destroy existing charts if any
+            ['chartSalesGrowth', 'chartRevenueTrend', 'chartYoYGrowth', 'chartEfficiency'].forEach(id => {
+                if (chartInstances[id]) {
+                    chartInstances[id].destroy();
                 }
             });
 
+            // Chart 1: Sales Growth (Bar)
+            const canvasSales = document.getElementById('chartSalesGrowth');
+            if (canvasSales) {
+                const ctxSales = canvasSales.getContext('2d');
+                chartInstances['chartSalesGrowth'] = new Chart(ctxSales, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Before', 'After'],
+                        datasets: [{
+                            label: 'Sales Index',
+                            data: [100, 174],
+                            backgroundColor: ['#c7d2fe', '#4f46e5'],
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: chartConfig
+                });
+            }
+
+            // Chart 2: Revenue Trend (Line)
+            const canvasTrend = document.getElementById('chartRevenueTrend');
+            if (canvasTrend) {
+                const ctxTrend = canvasTrend.getContext('2d');
+                chartInstances['chartRevenueTrend'] = new Chart(ctxTrend, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Ad Efficiency',
+                            data: [100, 105, 110, 115, 122, 130],
+                            borderColor: '#4f46e5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: { ...chartConfig, scales: { x: { display: false }, y: { display: false } } }
+                });
+            }
+
+            // Chart 3: YoY Growth (Doughnut)
+            const canvasYoY = document.getElementById('chartYoYGrowth');
+            if (canvasYoY) {
+                const ctxYoY = canvasYoY.getContext('2d');
+                chartInstances['chartYoYGrowth'] = new Chart(ctxYoY, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['C2C Growth', 'Base'],
+                        datasets: [{
+                            data: [173, 27], 
+                            backgroundColor: ['#059669', '#d1fae5'],
+                            borderWidth: 0,
+                            cutout: '75%'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                        animation: { animateScale: true, animateRotate: true }
+                    }
+                });
+            }
+
             // Chart 4: Efficiency (Bar - Descending)
-            const ctxEff = document.getElementById('chartEfficiency').getContext('2d');
-            new Chart(ctxEff, {
-                type: 'bar',
-                data: {
-                    labels: ['Before', 'After'],
-                    datasets: [{
-                        label: 'Inquiries',
-                        data: [100, 60],
-                        backgroundColor: ['#bae6fd', '#0284c7'],
-                        borderRadius: 6,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: chartConfig
-            });
+            const canvasEff = document.getElementById('chartEfficiency');
+            if (canvasEff) {
+                const ctxEff = canvasEff.getContext('2d');
+                chartInstances['chartEfficiency'] = new Chart(ctxEff, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Before', 'After'],
+                        datasets: [{
+                            label: 'Inquiries',
+                            data: [100, 60],
+                            backgroundColor: ['#bae6fd', '#0284c7'],
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: chartConfig
+                });
+            }
         };
 
         // Intersection Observer to trigger animations
