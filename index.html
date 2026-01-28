@@ -37,6 +37,22 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
+        
+        /* Highlight Marker Effect - 這就是螢光筆效果的 CSS */
+        .highlight-marker {
+            /* 關鍵在這一行：使用線性漸層製作背景 */
+            /* to top: 漸層方向從下往上 */
+            /* rgba(253, 224, 71, 0.6): 螢光黃色，帶有 0.6 的透明度 */
+            /* 40%: 黃色佔據下方 40% 的高度 */
+            /* transparent 40%: 上方 60% 是透明的，讓文字保持清晰 */
+            background: linear-gradient(to top, rgba(253, 224, 71, 0.6) 40%, transparent 40%);
+            
+            /* 增加左右內距，讓底色稍微超出文字兩側，視覺更平衡 */
+            padding: 0 4px;
+            
+            /* 圓角，讓底線邊緣不那麼銳利 */
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
