@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>張玉婷 Eunice Yuting Chang | Senior Project Manager & Solution Consultant</title>
-    <meta name="description" content="Eunice Yuting Chang's Portfolio: Senior Project Manager, Solution Consultant driving growth with SaaS, Data & AI strategies.">
+    <title>張玉婷 Eunice Yuting Chang | Data Strategy Dashboard</title>
+    <meta name="description" content="Interactive Portfolio for Senior Project Manager & Solution Consultant role.">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js for Interactive Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8f9fa; color: #1f2937; }
         .gradient-text {
@@ -22,17 +29,13 @@
         }
         .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: all 0.3s ease; }
         .card-shadow:hover { transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-        .timeline-border { border-left: 2px solid #e5e7eb; }
         
-        /* Highlight Stats */
-        .big-stat { font-family: 'Noto Sans TC', sans-serif; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
-        
-        @media print {
-            .no-print { display: none; }
-            .card-shadow { break-inside: avoid; box-shadow: none; border: 1px solid #eee; }
-            body { background-color: white; }
-            .bg-gray-50, .bg-blue-50, .bg-green-50, .bg-purple-50 { background-color: #f9f9f9 !important; border: 1px solid #eee; }
-            .hero-bg { background-image: none; }
+        /* Dashboard Card Styling */
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
     </style>
 </head>
@@ -40,23 +43,27 @@
 
     <!-- Header Section -->
     <header class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
                 <h1 class="text-2xl font-bold text-gray-800">張玉婷 <span class="text-indigo-600">Eunice Yuting Chang</span></h1>
                 <p class="text-sm text-gray-500 font-medium mt-1">Senior Project Manager, Solution Consultant | Driving Growth with SaaS, Data & AI Strategies</p>
             </div>
+            <!-- Contact Button -->
+            <a href="mailto:changyutyng@gmail.com" class="hidden md:inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition shadow-sm">
+                <i class="fas fa-paper-plane mr-2"></i> Contact Me
+            </a>
         </div>
     </header>
 
-    <!-- Hero Section (Reorganized for Clarity & Impact) -->
+    <!-- Hero Section -->
     <section class="hero-bg border-b border-gray-100 relative overflow-hidden">
-        <!-- Decorative Elements (Softer) -->
+        <!-- Decorative Elements -->
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 z-0"></div>
         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-60 z-0"></div>
 
-        <div class="max-w-5xl mx-auto px-6 py-24 relative z-10 text-center">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold tracking-widest mb-6 border border-indigo-200">
-                VALUE PROPOSITION
+        <div class="max-w-5xl mx-auto px-6 py-20 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-widest mb-6 border border-indigo-100">
+                PROFESSIONAL SUMMARY
             </span>
             
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight tracking-tight">
@@ -100,25 +107,33 @@
         </div>
     </section>
 
-    <!-- Key Metrics Highlight Bar -->
-    <section class="bg-slate-900 text-white py-16 shadow-xl mb-20">
+    <!-- Key Metrics Highlight Bar (With Counter Animation) -->
+    <section class="bg-slate-900 text-white py-16 shadow-xl mb-16 relative">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-slate-700/50">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-slate-700/50" id="counter-section">
                 <div class="px-4 group">
-                    <div class="text-5xl big-stat text-indigo-400 mb-2 group-hover:scale-105 transition-transform">40+</div>
+                    <div class="text-5xl big-stat text-indigo-400 mb-2 group-hover:scale-105 transition-transform">
+                        <span class="counter" data-target="40">0</span>+
+                    </div>
                     <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">協助品牌數位轉型</div>
                 </div>
                 <div class="px-4 group">
-                    <div class="text-5xl big-stat text-emerald-400 mb-2 group-hover:scale-105 transition-transform">20%+</div>
-                    <div class="text-sm font-bold text-gray-400 mt-3 tracking-wider">推動每年營收增長</div>
+                    <div class="text-5xl big-stat text-emerald-400 mb-2 group-hover:scale-105 transition-transform">
+                        <span class="counter" data-target="20">0</span>%+
+                    </div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">推動每年營收增長</div>
                 </div>
                 <div class="px-4 group">
-                    <div class="text-5xl big-stat text-sky-400 mb-2 group-hover:scale-105 transition-transform">50%</div>
-                    <div class="text-sm font-bold text-gray-400 mt-3 tracking-wider">流程效率提升</div>
+                    <div class="text-5xl big-stat text-sky-400 mb-2 group-hover:scale-105 transition-transform">
+                        <span class="counter" data-target="50">0</span>%
+                    </div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">流程效率提升</div>
                 </div>
                 <div class="px-4 group">
-                    <div class="text-5xl big-stat text-amber-400 mb-2 group-hover:scale-105 transition-transform">420%</div>
-                    <div class="text-sm font-bold text-gray-400 mt-3 tracking-wider">品牌認知成長</div>
+                    <div class="text-5xl big-stat text-amber-400 mb-2 group-hover:scale-105 transition-transform">
+                        <span class="counter" data-target="420">0</span>%
+                    </div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">品牌認知成長</div>
                 </div>
             </div>
         </div>
@@ -128,98 +143,69 @@
     <section class="max-w-6xl mx-auto px-6 py-8">
         <h3 class="text-3xl font-extrabold text-gray-900 mb-12 flex items-center">
             <span class="bg-indigo-600 w-1.5 h-8 mr-4 rounded-full"></span>
-            精選成功案例 Selected Case Studies
+            精選成功案例 (Selected Case Studies)
         </h3>
 
         <!-- Case 1: Digital Transformation -->
-        <div class="bg-white rounded-2xl card-shadow mb-16 overflow-hidden border border-gray-100">
-            <div class="grid md:grid-cols-12 min-h-[450px]">
+        <div class="bg-white rounded-2xl card-shadow mb-20 overflow-hidden border border-gray-100">
+            <div class="grid md:grid-cols-12 min-h-[480px]">
                 
-                <!-- Left: Visual Impact (Soft Purple Theme) -->
+                <!-- Left: Dashboard Visual (Interactive Charts) -->
                 <div class="md:col-span-5 bg-indigo-50 p-8 flex flex-col justify-between relative overflow-hidden">
                     <div class="relative z-10 flex flex-col h-full justify-between">
-                        <!-- Top: Main Growth Chart -->
-                        <div class="flex-grow flex flex-col justify-center">
-                            <div class="flex items-center space-x-2 mb-6">
-                                <span class="px-3 py-1 bg-white border border-indigo-100 text-indigo-600 text-xs font-bold rounded-full tracking-wide shadow-sm">數據策略核心</span>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between items-end mb-3">
-                                    <div>
-                                        <span class="text-6xl big-stat text-indigo-600 block leading-none">+74%</span>
-                                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">產品銷售額提升</span>
-                                    </div>
-                                </div>
-                                <!-- Bar Chart Visual (Clean, No Text) -->
-                                <div class="flex items-end h-36 space-x-4 w-full">
-                                    <div class="w-1/3 flex flex-col justify-end group h-full">
-                                        <div class="w-full bg-indigo-200 rounded-t-sm h-[40%] transition-all duration-500"></div>
-                                    </div>
-                                    <div class="w-1/3 flex flex-col justify-end group h-full">
-                                        <div class="w-full bg-indigo-600 rounded-t-sm h-full shadow-lg shadow-indigo-200 transition-all duration-500 hover:scale-y-105 origin-bottom"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-white border border-indigo-100 text-indigo-600 text-xs font-bold rounded-full shadow-sm">Data Insight</span>
+                            <i class="fas fa-ellipsis-h text-indigo-300"></i>
+                        </div>
 
-                            <!-- Trend Line (Expanded) -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100 flex items-center justify-between mb-4">
+                        <!-- Chart 1: Sales Growth Bar Chart -->
+                        <div class="dashboard-card p-4 rounded-xl mb-4">
+                            <div class="flex justify-between items-end mb-2">
                                 <div>
-                                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-0.5">最佳月營收成長</span>
-                                    <div class="flex items-center">
-                                        <span class="text-2xl big-stat text-gray-800 mr-2">+25%</span>
-                                        <span class="text-xs text-green-600 font-bold bg-green-100 px-1.5 py-0.5 rounded">MoM</span>
-                                    </div>
+                                    <span class="text-xs text-gray-500 font-bold uppercase">產品銷售額</span>
+                                    <span class="text-2xl font-bold text-indigo-600 block">+74%</span>
                                 </div>
-                                <div class="h-10 w-28">
-                                    <svg viewBox="0 0 100 40" class="w-full h-full overflow-visible">
-                                        <path d="M0,35 Q20,30 40,25 T80,15 T100,5 L100,40 L0,40 Z" fill="url(#trendGradient)" />
-                                        <defs>
-                                            <linearGradient id="trendGradient" x1="0" x2="0" y1="0" y2="1">
-                                                <stop offset="0%" stop-color="#4ade80" stop-opacity="0.3"/>
-                                                <stop offset="100%" stop-color="#4ade80" stop-opacity="0"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M0,35 Q20,30 40,25 T80,15 T100,5" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <circle cx="100" cy="5" r="3" fill="#10b981" />
-                                    </svg>
-                                </div>
+                            </div>
+                            <div class="h-32">
+                                <canvas id="chartSalesGrowth"></canvas>
                             </div>
                         </div>
 
-                        <!-- Bottom: 4-Grid Stats -->
-                        <div class="grid grid-cols-2 gap-2.5 mt-auto">
-                            <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm">
-                                <div class="text-[10px] text-gray-400 mb-0.5">流量效率</div>
-                                <div class="text-sm font-bold text-gray-700 flex items-center"><i class="fas fa-bolt mr-1.5 text-yellow-400 text-xs"></i>+30%</div>
+                        <!-- Chart 2: Revenue Trend Line Chart -->
+                        <div class="dashboard-card p-4 rounded-xl mb-4">
+                            <div class="flex justify-between items-end mb-2">
+                                <div>
+                                    <span class="text-xs text-gray-500 font-bold uppercase">月營收趨勢</span>
+                                    <span class="text-xl font-bold text-gray-800 block">+25% <span class="text-xs text-green-500 font-medium">MoM</span></span>
+                                </div>
                             </div>
-                            <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm">
-                                <div class="text-[10px] text-gray-400 mb-0.5">學習門檻</div>
-                                <div class="text-sm font-bold text-gray-700 flex items-center"><i class="fas fa-clock mr-1.5 text-blue-400 text-xs"></i>-50%</div>
+                            <div class="h-24">
+                                <canvas id="chartRevenueTrend"></canvas>
                             </div>
-                            <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm">
-                                <div class="text-[10px] text-gray-400 mb-0.5">通路介接時間</div>
-                                <div class="text-sm font-bold text-gray-700 flex items-center"><i class="fas fa-forward mr-1.5 text-indigo-400 text-xs"></i>-35%</div>
+                        </div>
+
+                        <!-- Bottom Matrix -->
+                        <div class="grid grid-cols-2 gap-3 mt-auto">
+                            <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
+                                <div class="text-[10px] text-gray-400 mb-1">通路介接時間</div>
+                                <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-forward mr-2 text-indigo-400"></i>-35%</div>
                             </div>
-                            <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm">
-                                <div class="text-[10px] text-gray-400 mb-0.5">客戶續約率</div>
-                                <div class="text-sm font-bold text-gray-700 flex items-center"><i class="fas fa-heart mr-1.5 text-pink-400 text-xs"></i>90%</div>
+                            <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition">
+                                <div class="text-[10px] text-gray-400 mb-1">客戶留存率</div>
+                                <div class="text-base font-bold text-gray-700 flex items-center"><i class="fas fa-heart mr-2 text-pink-400"></i>90%</div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Decorative Background -->
-                    <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-indigo-100 rounded-full blur-3xl opacity-50 z-0"></div>
                 </div>
 
-                <!-- Right: Context -->
-                <div class="md:col-span-7 p-10 md:p-12 flex flex-col justify-center bg-white">
+                <!-- Right: Content -->
+                <div class="md:col-span-7 p-10 md:p-14 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
                         <h4 class="text-3xl font-extrabold text-gray-900 mb-2">TheBuyerBuys</h4>
-                        <p class="text-lg text-indigo-600 font-medium mb-3">企業數位轉型與電商營運策略</p>
+                        <p class="text-lg text-indigo-600 font-medium mb-3">企業數位轉型與營運流程自動化</p>
                         <div class="text-gray-500 text-sm space-y-1 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                            <p><span class="font-bold text-gray-700">服務品牌：</span>能藝企業 (吳竹墨汁、KING JIM、KAPAMAX 等 15+ 文具美術品牌)</p>
-                            <p><span class="invisible font-bold">服務品牌：</span>長寬貿易 (AUTOSOL、SLICE、FUJIYA、IREGA 等 20+ 五金手工具品牌)</p>
+                            <p><span class="font-bold text-gray-700">客戶：</span>能藝企業 - 吳竹墨汁、KING JIM、KAPAMAX 等 15+ 文具美術品牌</p>
+                            <p><span class="invisible font-bold">客戶：</span>長寬貿易 - AUTOSOL、SLICE、FUJIYA、IREGA 等 20+ 五金手工具品牌</p>
                         </div>
                     </div>
                     
@@ -233,7 +219,7 @@
                                 </li>
                                 <li class="flex items-start">
                                     <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
-                                    <span>制定精細的月度銷售計畫（涵蓋 <strong>市場趨勢、庫存水位、銷售迴轉、YoY/MoM 分析</strong>），運用 <strong>Excel 樞紐分析</strong> 與 <strong>Python 競品爬蟲</strong> 識別潛力產品，據此協商採購條件，保持 <strong>每年 20%+</strong> 的營收穩定增長。</span>
+                                    <span>制定精細的月度銷售計畫（涵蓋 <strong>市場趨勢、庫存水位、YoY/MoM 分析</strong>），運用 <strong>Excel 樞紐分析</strong> 與 <strong>Python 競品爬蟲</strong> 識別潛力產品，據此協商採購條件，保持 <strong>每年 20%+</strong> 的營收穩定增長。</span>
                                 </li>
                             </ul>
                         </div>
@@ -256,43 +242,36 @@
         </div>
 
         <!-- Case 2: Market Strategy -->
-        <div class="bg-white rounded-2xl card-shadow mb-16 overflow-hidden border border-gray-100">
-            <div class="grid md:grid-cols-12 min-h-[420px]">
+        <div class="bg-white rounded-2xl card-shadow mb-20 overflow-hidden border border-gray-100">
+            <div class="grid md:grid-cols-12 min-h-[480px]">
                 
-                <!-- Left: Visual Impact (Soft Green Theme) -->
-                <div class="md:col-span-5 bg-emerald-50 p-10 flex flex-col justify-center relative overflow-hidden">
-                    <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div class="flex items-center space-x-2 mb-6">
-                             <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full tracking-wide shadow-sm">數據驅動決策</span>
-                        </div>
-                       
-                        <!-- Growth Bar Chart -->
-                        <div class="flex flex-col space-y-8">
-                            <!-- C2C -->
-                            <div class="mb-4">
-                                <div class="flex justify-between items-end mb-1">
-                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block">C2C 營收成長</span>
-                                    <span class="text-3xl big-stat text-emerald-600">+173%</span>
-                                </div>
-                                <div class="w-full bg-emerald-200 h-2.5 rounded-full overflow-hidden">
-                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+                <!-- Left: Dashboard Visual (Green) -->
+                <div class="md:col-span-5 bg-emerald-50 p-8 flex flex-col justify-center relative overflow-hidden">
+                    <div class="relative z-10 h-full flex flex-col justify-center">
+                        <div class="dashboard-card p-6 rounded-xl mb-6">
+                            <h5 class="text-xs font-bold text-gray-500 uppercase mb-4 text-center">YoY Growth Performance</h5>
+                            <div class="h-48 relative">
+                                <canvas id="chartYoYGrowth"></canvas>
+                                <!-- Center Text Overlay -->
+                                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                    <span class="text-3xl font-bold text-emerald-600">High</span>
+                                    <span class="text-xs text-gray-400">Growth</span>
                                 </div>
                             </div>
-
-                            <!-- B2B -->
-                            <div>
-                                <div class="flex justify-between items-end mb-1">
-                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block">B2B 訂單成長</span>
-                                    <span class="text-3xl big-stat text-emerald-600">+142%</span>
+                            <div class="flex justify-around mt-4 text-center">
+                                <div>
+                                    <span class="block text-2xl font-bold text-emerald-600">+173%</span>
+                                    <span class="text-[10px] text-gray-500 uppercase">C2C 營收</span>
                                 </div>
-                                <div class="w-full bg-emerald-200 h-2.5 rounded-full overflow-hidden">
-                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 82%"></div>
+                                <div>
+                                    <span class="block text-2xl font-bold text-teal-600">+142%</span>
+                                    <span class="text-[10px] text-gray-500 uppercase">B2B 訂單</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Highlight -->
-                        <div class="mt-8 bg-white p-4 rounded-xl border border-emerald-100 shadow-sm flex items-center">
+                        <!-- Highlight Badge -->
+                        <div class="bg-white p-3 rounded-lg border border-emerald-100 shadow-sm flex items-center transform hover:scale-105 transition cursor-default">
                             <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center mr-4 text-emerald-600">
                                 <i class="fas fa-globe-americas text-lg"></i>
                             </div>
@@ -304,7 +283,7 @@
                     </div>
                 </div>
 
-                <!-- Right: Context -->
+                <!-- Right: Content -->
                 <div class="md:col-span-7 p-10 md:p-12 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
                         <h4 class="text-3xl font-extrabold text-gray-900 mb-2">Five Metal Shop</h4>
@@ -315,7 +294,7 @@
                         <div>
                             <h5 class="font-bold text-gray-800 mb-3 text-base uppercase tracking-wide flex items-center"><i class="fas fa-fire-alt text-emerald-500 mr-2.5"></i>挑戰</h5>
                             <p class="text-gray-600 leading-relaxed text-base">
-                                需在短時間內將單一產品推向全球市場，同時面對20多個國家不同的物流限制與行銷管道差異，缺乏精準的市場切入點。
+                                需在短時間內將單一產品推向全球市場，同時面對20多個國家不同的物流限制與行銷渠道差異，缺乏精準的市場切入點。
                             </p>
                         </div>
                         <div>
@@ -342,55 +321,48 @@
 
         <!-- Case 3: System Integration -->
         <div class="bg-white rounded-2xl card-shadow overflow-hidden border border-gray-100">
-            <div class="grid md:grid-cols-12 min-h-[420px]">
+            <div class="grid md:grid-cols-12 min-h-[480px]">
                 
-                <!-- Left: Visual Impact (Soft Blue Theme) -->
-                <div class="md:col-span-5 bg-sky-50 p-10 flex flex-col justify-center relative overflow-hidden">
+                <!-- Left: Dashboard Visual (Blue) -->
+                <div class="md:col-span-5 bg-sky-50 p-8 flex flex-col justify-center relative overflow-hidden">
                     <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div class="flex items-center space-x-2 mb-6">
-                             <span class="px-3 py-1 bg-sky-600 text-white text-xs font-bold rounded-full tracking-wide shadow-sm">營運痛點解決</span>
+                        <div class="flex items-center space-x-2 mb-2">
+                             <span class="px-3 py-1 bg-white border border-sky-200 text-sky-600 text-xs font-bold rounded-full shadow-sm">營運效率</span>
                         </div>
-                       
-                        <!-- Efficiency Chart (Reduction Visual) -->
-                        <div class="mb-8 text-center">
-                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">客服查詢量顯著降低</div>
-                            <div class="flex flex-col items-center justify-center space-y-2">
-                                <!-- Top Bar -->
-                                <div class="w-3/4 h-12 bg-sky-200 rounded-lg flex items-center justify-center">
-                                    <span class="text-xs text-sky-800 font-medium">Before</span>
-                                </div>
-                                <!-- Arrow -->
-                                <div class="text-sky-400 text-xl"><i class="fas fa-arrow-down"></i></div>
-                                <!-- Bottom Bar -->
-                                <div class="w-2/5 h-16 bg-sky-600 rounded-lg flex items-center justify-center shadow-lg shadow-sky-200">
-                                    <span class="text-2xl text-white font-bold">-40%</span>
-                                </div>
-                                <span class="text-xs text-sky-700 font-bold mt-1">After</span>
+
+                        <!-- Chart 3: Efficiency Bar Chart -->
+                        <div class="dashboard-card p-5 rounded-xl mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-xs font-bold text-gray-500 uppercase">客服查詢量 (Inquiries)</span>
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">-40%</span>
+                            </div>
+                            <div class="h-40">
+                                <canvas id="chartEfficiency"></canvas>
                             </div>
                         </div>
 
                         <!-- Stats Grid -->
                         <div class="grid grid-cols-2 gap-4 mt-auto">
-                            <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm">
+                            <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm hover:shadow-md transition">
                                 <div class="text-2xl font-bold text-sky-600">10%</div>
                                 <div class="text-xs text-gray-500 font-medium">回購率提升</div>
                             </div>
-                            <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm">
+                            <div class="bg-white p-4 rounded-xl border border-sky-100 text-center shadow-sm hover:shadow-md transition">
                                 <div class="text-2xl font-bold text-sky-600">30%</div>
                                 <div class="text-xs text-gray-500 font-medium">折扣碼使用率</div>
                             </div>
                         </div>
                         
                         <div class="mt-6 text-center">
-                             <span class="inline-flex items-center bg-green-100 text-green-700 text-xs font-bold px-4 py-1.5 rounded-full"><i class="fas fa-check-circle mr-2"></i>上線後 0 客訴</span>
+                             <span class="inline-flex items-center bg-green-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg transform hover:scale-105 transition"><i class="fas fa-check-circle mr-2"></i>上線後 0 客訴</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Context -->
+                <!-- Right: Content -->
                 <div class="md:col-span-7 p-10 md:p-12 flex flex-col justify-center bg-white">
                     <div class="mb-8 border-b border-gray-100 pb-6">
-                        <h4 class="text-3xl font-extrabold text-gray-900 mb-2">OOO</h4>
+                        <h4 class="text-3xl font-extrabold text-gray-900 mb-3">OOO</h4>
                         <p class="text-lg text-sky-600 font-medium mb-3">Outstanding Ordinary Object - 品牌官網系統化與會員增長</p>
                     </div>
                     
@@ -491,66 +463,166 @@
         </div>
     </section>
 
-    <!-- Skills & Tools Section -->
-    <section class="bg-gray-900 text-white py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-2xl font-bold mb-10 text-center">核心技能與工具</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Skill Column 1 -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-purple-500 transition-colors">
-                    <h4 class="font-bold text-purple-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
-                        <i class="fas fa-database mr-2"></i>數據策略與工具
-                    </h4>
-                    <ul class="space-y-4 text-gray-300 text-sm">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Looker Studio / Power BI 報表</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Google Analytics 數據分析</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>Excel Pivot 模組化設計</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-3"></i>數據洞察與商業決策</li>
-                    </ul>
-                </div>
-                <!-- Skill Column 2 -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-blue-500 transition-colors">
-                    <h4 class="font-bold text-blue-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
-                        <i class="fas fa-laptop-code mr-2"></i>產品與營運
-                    </h4>
-                    <ul class="space-y-4 text-gray-300 text-sm">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>產品規格與功能定義</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>Agile / Kanban 專案管理</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>SaaS / LINE Mini App 規劃</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i>跨部門技術溝通</li>
-                    </ul>
-                </div>
-                <!-- Skill Column 3 -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-500 transition-colors">
-                    <h4 class="font-bold text-green-400 mb-6 text-lg border-b border-gray-700 pb-3 flex items-center">
-                        <i class="fas fa-chart-line mr-2"></i>成長與商業策略
-                    </h4>
-                    <ul class="space-y-4 text-gray-300 text-sm">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>顧問式提案與簡報</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>產品上市策略規劃</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>會員經營與 CRM</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>跨境市場拓展</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer/Contact -->
+    <!-- Footer -->
     <footer class="bg-white py-12 border-t border-gray-200 mt-auto">
         <div class="max-w-3xl mx-auto px-6 text-center">
             <h2 class="text-2xl font-bold text-gray-900 mb-8">Let's discuss how I can contribute to your team.</h2>
             <div class="flex justify-center gap-6 mb-8">
-                <a href="mailto:changyutyng@gmail.com" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg hover:shadow-xl flex items-center transform hover:-translate-y-1">
-                    <i class="fas fa-envelope mr-2"></i> 寄信給我
+                <a href="mailto:changyutyng@gmail.com" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg hover:shadow-xl flex items-center transform hover:-translate-y-1">
+                    <i class="fas fa-envelope mr-2"></i> Email Me
                 </a>
                 <a href="tel:+886930698828" class="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm hover:shadow-md flex items-center transform hover:-translate-y-1">
                     <i class="fas fa-phone mr-2"></i> (+886) 930-698-828
                 </a>
             </div>
-            <p class="text-gray-400 text-sm font-medium">© 2026 Eunice Yuting Chang. 版權所有.</p>
+            <p class="text-gray-400 text-sm font-medium">© 2026 Eunice Yuting Chang. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Interactive Scripts -->
+    <script>
+        // Count Up Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Chart Configuration
+        const chartConfig = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { display: false, beginAtZero: true },
+                x: { grid: { display: false } }
+            },
+            animation: { duration: 2000, easing: 'easeOutQuart' }
+        };
+
+        // Initialize Charts Function
+        const initCharts = () => {
+            
+            // Chart 1: Sales Growth (Bar)
+            const ctxSales = document.getElementById('chartSalesGrowth').getContext('2d');
+            new Chart(ctxSales, {
+                type: 'bar',
+                data: {
+                    labels: ['Before', 'After'],
+                    datasets: [{
+                        label: 'Sales Index',
+                        data: [100, 174],
+                        backgroundColor: ['#c7d2fe', '#4f46e5'],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: chartConfig
+            });
+
+            // Chart 2: Revenue Trend (Line)
+            const ctxTrend = document.getElementById('chartRevenueTrend').getContext('2d');
+            new Chart(ctxTrend, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [100, 105, 110, 118, 122, 125],
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: { ...chartConfig, scales: { x: { display: false }, y: { display: false } } }
+            });
+
+            // Chart 3: YoY Growth (Doughnut)
+            const ctxYoY = document.getElementById('chartYoYGrowth').getContext('2d');
+            new Chart(ctxYoY, {
+                type: 'doughnut',
+                data: {
+                    labels: ['C2C Growth', 'Base'],
+                    datasets: [{
+                        data: [173, 27], // Visual representation
+                        backgroundColor: ['#059669', '#d1fae5'],
+                        borderWidth: 0,
+                        cutout: '75%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                    animation: { animateScale: true, animateRotate: true }
+                }
+            });
+
+            // Chart 4: Efficiency (Bar - Descending)
+            const ctxEff = document.getElementById('chartEfficiency').getContext('2d');
+            new Chart(ctxEff, {
+                type: 'bar',
+                data: {
+                    labels: ['Before', 'After'],
+                    datasets: [{
+                        label: 'Inquiries',
+                        data: [100, 60],
+                        backgroundColor: ['#bae6fd', '#0284c7'],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: chartConfig
+            });
+        };
+
+        // Intersection Observer to trigger animations
+        const observerOptions = { threshold: 0.5 };
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initCharts(); // Init charts only when section is visible
+                    chartObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Start Observing
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterSection = document.getElementById('counter-section');
+            if (counterSection) counterObserver.observe(counterSection);
+
+            const chartSection = document.getElementById('chartSalesGrowth'); // Use first chart as trigger
+            if (chartSection) chartObserver.observe(chartSection.parentElement.parentElement.parentElement); // Observe the container
+        });
+
+    </script>
 </body>
 </html>
